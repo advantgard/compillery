@@ -6,15 +6,16 @@ import {
   ResourcePicker,
   TextStyle
 } from "@shopify/polaris";
+import { ProductItems } from "../src/components/product-recommendations/ProductItems";
 
 class Dashboard extends React.Component {
   state = {
     resourcePicker: false,
-    selectedProducts: {}
+    selectedProducts: []
   };
 
   handleResourceSelection = resources => {
-    console.log(resources.selection);
+    console.log(resources.selection[0]);
     this.setState({
       resourcePicker: false,
       selectedProducts: resources.selection
@@ -63,6 +64,9 @@ class Dashboard extends React.Component {
             }}
           />
         </Layout>
+        <preview-frame>
+          <ProductItems items={this.state.selectedProducts} />
+        </preview-frame>
       </Page>
     );
   }
