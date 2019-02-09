@@ -1,10 +1,6 @@
 import {
-  EmptyState,
-  Layout,
   Page,
-  ResourceList,
-  ResourcePicker,
-  TextStyle
+  ResourcePicker
 } from "@shopify/polaris";
 import { ProductItems } from "../src/components/product-recommendations/ProductItems";
 
@@ -24,7 +20,11 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <Page title="Product Recommendations">
+      <Page primaryAction={{
+          title: "Product Recommendations",
+          content: "Select products",
+          onAction: () => this.setState({ resourcePicker: true })
+      }}>
         <ResourcePicker
           open={this.state.resourcePicker}
           resourceType="Product"
@@ -34,38 +34,10 @@ class Dashboard extends React.Component {
           }}
           onSelection={resources => this.handleResourceSelection(resources)}
         />
-        <Layout>
-          <EmptyState
-            heading="Recommend featured products"
-            action={{
-              content: "Select Products",
-              onAction: () => this.setState({ resourcePicker: true })
-            }}
-            image=""
-          >
-            <p>Select the products you want to change the price temproarly</p>
-          </EmptyState>
-          <ResourceList
-            resourceName={{ singular: "product", plural: "products" }}
-            items={this.state.selectedProducts}
-            renderItem={item => {
-              const { id, title, url } = item;
-              return (
-                <ResourceList.Item
-                  url={url}
-                  id={id}
-                  accessibilityLabel={`View details for ${title}`}
-                >
-                  <h3>
-                    <TextStyle variation="strong">{title}</TextStyle>
-                  </h3>
-                </ResourceList.Item>
-              );
-            }}
-          />
-        </Layout>
         <preview-frame>
-          <ProductItems items={this.state.selectedProducts} />
+          <div className="compillery-product-recommendations">
+            <ProductItems items={this.state.selectedProducts} />
+          </div>
         </preview-frame>
       </Page>
     );

@@ -1,0 +1,31 @@
+@import "variables";
+
+@function em($pixels, $context: $base-font-size) {
+  @return #{$pixels/$context}em;
+}
+
+@mixin columns($columns, $spaceBetweenColumns) {
+  @if $columns > 1 {
+    width: (100% / $columns) - $spaceBetweenColumns;
+    margin-right: $spaceBetweenColumns;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  } @else {
+    width: 100%;
+  }
+}
+
+@mixin transition($transition...) {
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+
+@mixin box-shadow($props...) {
+  -webkit-box-shadow: $props;
+  -moz-box-shadow: $props;
+  box-shadow: $props;
+}

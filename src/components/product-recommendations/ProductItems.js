@@ -1,3 +1,4 @@
+import React from "react";
 import { ProductItem } from "./ProductItem";
 
 function renderItems(items) {

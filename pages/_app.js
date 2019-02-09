@@ -2,6 +2,7 @@ import App from "next/app";
 import Head from "next/head";
 import { AppProvider } from "@shopify/polaris";
 import "@shopify/polaris/styles.css";
+import "../dist/compillery-product-recommendations.min.css";
 import Cookies from "js-cookie";
 
 class MyApp extends App {
@@ -13,7 +14,7 @@ class MyApp extends App {
     return (
       <React.Fragment>
         <Head>
-          <title>Sample App</title>
+          <title>Product Recommendations</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta charSet="utf-8" />
         </Head>

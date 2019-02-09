@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css?family=Nobile");
+
+@import "variables";
+@import "mixins";
+@import "product-item";
+
+.compillery-product-recommendations {
+
+  // Base setup
+  font-size: #{$base-font-size}px;
+  font-family: $base-font-family;
+  -webkit-text-size-adjust: 100%;
+
+  // Component styles
+
+  @include product-item__image;
+  @include product-item__title;
+  @include product-item__price;
+  @include product-item__action;
+
+  // Styles for Modern Mobile Smart Phones (Extra Small Screens+)
+  @media screen and (min-width: $screen-xs-min) {
+    @include product-item__image--xs;
+  }
+
+  // Styles for Mobile Tablet Portrait (Small Screens)
+  @media screen and (min-width: $screen-sm-min) {
+    @include product-item__image--sm;
+    @include product-item__title--sm;
+  }
+
+  // Styles for Low resolution displays (Medium Screens)
+  @media screen and (min-width: $screen-md-min) {
+    @include product-item__image--md;
+    @include product-item__action--md;
+    @include product-item__image-container--md;
+    @include product-item__title-container--md;
+    @include product-item__price-container--md;
+    @include product-item__action-container--md;
+  }
+
+  // Styles for Low resolution displays (Large Screens)
+  @media screen and (min-width: $screen-lg-min) {
+    @include product-item__image--lg;
+    @include product-item__action--lg;
+  }
+}
