@@ -1,0 +1,60 @@
+@import "variables";
+@import "mixins";
+
+@mixin product-items__container() {
+  .product-items__container {
+    padding: 0 em(10);
+    position: relative;
+  }
+}
+
+@mixin product-items__container--sm() {
+  .product-items__container {
+    width: $container-sm;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+@mixin product-items__container--md() {
+  .product-items__container {
+    width: $container-md;
+  }
+}
+
+@mixin product-items__container--lg() {
+  .product-items__container {
+    width: $container-lg;
+  }
+}
+
+@mixin product-items__grid() {
+  .product-items__grid {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+
+@mixin product-items__grid--sm() {
+  .product-items__grid {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+@mixin product-items__breaks() {
+  .product-items__break--1 {
+    width: 100%;
+    order: 1;
+  }
+  .product-items__break--2 {
+    width: 100%;
+    order: 3;
+  }
+  .product-items__break--3 {
+    width: 100%;
+    order: 5;
+  }
+}

@@ -9,7 +9,7 @@ function renderItems(items) {
         key={item.variants[0].id}
         title={item.title}
         price={item.variants[0].price}
-        url={ `/products/${item.handle}` }
+        url={`/products/${item.handle}`}
       />
     ));
   }
@@ -18,14 +18,12 @@ function renderItems(items) {
 
 export const ProductItems = ({ items }) => {
   return (
-    <div className="product-items">
-      <div className="container">
-        <div className={`grid`}>
-          {renderItems(items)}
-          <div className="u-break u-order--1"> </div>
-          <div className="u-break u-order--3"> </div>
-          <div className="u-break u-order--5"> </div>
-        </div>
+    <div className="product-items__container">
+      <div className={`product-items__grid`}>
+        {renderItems(items)}
+        <div className="product-items__break--1"> </div>
+        <div className="product-items__break--2"> </div>
+        <div className="product-items__break--3"> </div>
       </div>
     </div>
   );
