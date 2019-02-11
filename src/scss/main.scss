@@ -11,13 +11,14 @@
   font-size: #{$base-font-size}px;
   font-family: $base-font-family;
   -webkit-text-size-adjust: 100%;
-  overflow-y: scroll;
+  overflow: auto;
   background-color: #fff;
 
   // Component styles
 
   @include product-item__image-wrapper--square;
   @include product-item__image-wrapper--16-9;
+  @include product-item__image;
   @include product-item__title;
   @include product-item__price;
   @include product-item__action;
