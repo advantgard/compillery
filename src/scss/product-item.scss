@@ -35,7 +35,7 @@
     width: 70%;
     font-size: em(18);
     padding: em(15) 0;
-    margin: 0 auto;
+    margin: em(5) auto;
   }
 }
 
@@ -170,6 +170,7 @@
   .product-item__title {
     font-weight: 600;
     text-align: center;
+    margin: em(10) 0;
   }
 }
 
@@ -182,5 +183,6 @@
 @mixin product-item__price() {
   .product-item__price {
     text-align: center;
+    margin: em(5) 0;
   }
 }

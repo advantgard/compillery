@@ -1,10 +1,18 @@
-import { Page, Layout, ResourcePicker, ChoiceList } from "@shopify/polaris";
+import {
+  Page,
+  Layout,
+  Card,
+  ResourcePicker,
+  ChoiceList,
+  TextField
+} from "@shopify/polaris";
 import { ProductItems } from "../src/components/product-recommendations/ProductItems";
 
 class Dashboard extends React.Component {
   state = {
     resourcePicker: false,
-    aspectRatio: "square",
+    aspectRatio: "16-9",
+    title: "",
     selectedProducts: []
   };
 
@@ -19,6 +27,12 @@ class Dashboard extends React.Component {
   handleAspectRatioSelection = selection => {
     this.setState({
       aspectRatio: selection
+    });
+  };
+
+  handleTitleChange = newTitle => {
+    this.setState({
+      title: newTitle
     });
   };
 
@@ -42,18 +56,37 @@ class Dashboard extends React.Component {
           onSelection={resources => this.handleResourceSelection(resources)}
         />
         <Layout>
-          <ChoiceList
-            title="Product image aspect ratio"
-            choices={[
-              { label: "Square", value: "square" },
-              { label: "Rectangle (16:9)", value: "16-9" }
-            ]}
-            selected={this.state.aspectRatio}
-            onChange={this.handleAspectRatioSelection}
-          />
+          <Layout.Section oneHalf>
+            <Card title="Options">
+              <Card.Section title="Images">
+                <ChoiceList
+                  title="Product image aspect ratio"
+                  choices={[
+                    { label: "Square", value: "square" },
+                    { label: "Rectangle (16:9)", value: "16-9" }
+                  ]}
+                  selected={this.state.aspectRatio}
+                  onChange={this.handleAspectRatioSelection}
+                />
+              </Card.Section>
+            </Card>
+          </Layout.Section>
+          <Layout.Section oneHalf>
+            <Card title="Sections">
+              <Card.Section>
+                <TextField
+                  label="Promotion Title"
+                  value={this.state.title}
+                  onChange={this.handleTitleChange}
+                />
+              </Card.Section>
+            </Card>
+          </Layout.Section>
         </Layout>
         <preview-frame>
+          <h2>Preview</h2>
           <div className="compillery-product-recommendations">
+            <h2 className="product-items__title">{this.state.title}</h2>
             <ProductItems
               items={this.state.selectedProducts}
               aspectRatio={this.state.aspectRatio}

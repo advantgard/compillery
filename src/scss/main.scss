@@ -10,6 +10,7 @@
   // Base setup
   font-size: #{$base-font-size}px;
   font-family: $base-font-family;
+  padding: 30px 0;
   -webkit-text-size-adjust: 100%;
   overflow: auto;
   background-color: #fff;
@@ -22,6 +23,7 @@
   @include product-item__title;
   @include product-item__price;
   @include product-item__action;
+  @include product-items__title;
   @include product-items__container;
   @include product-items__grid;
   @include product-items__breaks;
@@ -50,6 +52,7 @@
     @include product-item__title-container--md;
     @include product-item__price-container--md;
     @include product-item__action-container--md;
+    @include product-items__title--md;
     @include product-items__container--md;
   }
 
