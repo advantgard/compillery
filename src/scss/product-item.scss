@@ -76,12 +76,13 @@
   }
 }
 
-@mixin product-item__image() {
-  .product-item__image {
+@mixin product-item__image-wrapper--square() {
+  .product-item__image-wrapper--square {
     display: block;
     background-size: contain;
     background-position: center;
     background-color: $base-placeholder-color;
+    overflow: hidden;
     position: relative;
     width: em(289);
     height: em(289);
@@ -89,30 +90,72 @@
   }
 }
 
-@mixin product-item__image--xs() {
-  .product-item__image {
+@mixin product-item__image-wrapper--square--xs() {
+  .product-item__image-wrapper--square {
     width: em(339);
     height: em(339);
   }
 }
 
-@mixin product-item__image--sm() {
-  .product-item__image {
+@mixin product-item__image-wrapper--square--sm() {
+  .product-item__image-wrapper--square {
     width: em(183);
     height: em(183);
   }
 }
 
-@mixin product-item__image--md() {
-  .product-item__image {
+@mixin product-item__image-wrapper--square--md() {
+  .product-item__image-wrapper--square {
     width: em(232);
     height: em(232);
   }
 }
 
-@mixin product-item__image--lg() {
-  .product-item__image {
+@mixin product-item__image-wrapper--square--lg() {
+  .product-item__image-wrapper--square {
     width: em(282);
+    height: em(282);
+  }
+}
+
+@mixin product-item__image-wrapper--16-9() {
+  .product-item__image-wrapper--16-9 {
+    display: block;
+    background-size: contain;
+    background-position: center;
+    background-color: $base-placeholder-color;
+    overflow: hidden;
+    position: relative;
+    width: em(163);
+    height: em(289);
+    margin: 0 auto;
+  }
+}
+
+@mixin product-item__image-wrapper--16-9--xs() {
+  .product-item__image-wrapper--16-9 {
+    width: em(191);
+    height: em(339);
+  }
+}
+
+@mixin product-item__image-wrapper--16-9--sm() {
+  .product-item__image-wrapper--16-9 {
+    width: em(103);
+    height: em(183);
+  }
+}
+
+@mixin product-item__image-wrapper--16-9--md() {
+  .product-item__image-wrapper--16-9 {
+    width: em(131);
+    height: em(232);
+  }
+}
+
+@mixin product-item__image-wrapper--16-9--lg() {
+  .product-item__image-wrapper--16-9 {
+    width: em(159);
     height: em(282);
   }
 }

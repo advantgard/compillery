@@ -16,7 +16,8 @@
 
   // Component styles
 
-  @include product-item__image;
+  @include product-item__image-wrapper--square;
+  @include product-item__image-wrapper--16-9;
   @include product-item__title;
   @include product-item__price;
   @include product-item__action;
@@ -26,12 +27,14 @@
 
   // Styles for Modern Mobile Smart Phones (Extra Small Screens+)
   @media screen and (min-width: $screen-xs-min) {
-    @include product-item__image--xs;
+    @include product-item__image-wrapper--square--xs;
+    @include product-item__image-wrapper--16-9;
   }
 
   // Styles for Mobile Tablet Portrait (Small Screens)
   @media screen and (min-width: $screen-sm-min) {
-    @include product-item__image--sm;
+    @include product-item__image-wrapper--square--sm;
+    @include product-item__image-wrapper--16-9--sm;
     @include product-item__title--sm;
     @include product-items__container--sm;
     @include product-items__grid--sm;
@@ -39,7 +42,8 @@
 
   // Styles for Low resolution displays (Medium Screens)
   @media screen and (min-width: $screen-md-min) {
-    @include product-item__image--md;
+    @include product-item__image-wrapper--square--md;
+    @include product-item__image-wrapper--16-9--md;
     @include product-item__action--md;
     @include product-item__image-container--md;
     @include product-item__title-container--md;
@@ -50,7 +54,8 @@
 
   // Styles for Low resolution displays (Large Screens)
   @media screen and (min-width: $screen-lg-min) {
-    @include product-item__image--lg;
+    @include product-item__image-wrapper--square--lg;
+    @include product-item__image-wrapper--16-9--lg;
     @include product-item__action--lg;
     @include product-items__container--lg;
   }
