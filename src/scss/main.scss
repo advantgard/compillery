@@ -20,6 +20,8 @@
   @include product-item__image-wrapper--square;
   @include product-item__image-wrapper--16-9;
   @include product-item__image;
+  @include product-item__toggle;
+  @include product-item__toggle-icon--expand;
   @include product-item__title;
   @include product-item__price;
   @include product-item__action;

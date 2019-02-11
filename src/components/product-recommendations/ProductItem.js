@@ -5,6 +5,9 @@ export const ProductItem = ({ title, price, imgUrl, aspectRatio, url, action }) 
     <React.Fragment>
       <div className="product-item__image-container">
         <div className={ `product-item__image-wrapper--${aspectRatio ? aspectRatio : "square"}` } >
+            <a className="product-item__toggle" href="javascript:void(0)">
+                <span className="product-item__toggle-icon--expand"/>
+            </a>
             <img className="product-item__image" src={imgUrl} alt=""/>
         </div>
       </div>
