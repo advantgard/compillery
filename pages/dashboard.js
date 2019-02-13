@@ -1,99 +1,54 @@
-import {
-  Page,
-  Layout,
-  Card,
-  ResourcePicker,
-  ChoiceList,
-  TextField
-} from "@shopify/polaris";
-import { ProductItems } from "../src/components/product-recommendations/ProductItems";
+import { DashboardWidget } from "../src/components/product-recommendations/DashboardWidget";
+import { ProductRecommendations } from "../src/components/product-recommendations/ProductRecommendations";
+import { WidgetContext } from "../src/components/product-recommendations/WidgetContext";
 
 class Dashboard extends React.Component {
-  state = {
-    resourcePicker: false,
-    aspectRatio: "16-9",
-    title: "",
-    selectedProducts: []
-  };
-
   handleResourceSelection = resources => {
-    console.log(resources.selection[0]);
-    this.setState({
-      resourcePicker: false,
-      selectedProducts: resources.selection
-    });
+    let props = this.state.props;
+    props.resourcePicker = false;
+    props.products = resources;
+    this.setState({props});
   };
 
-  handleAspectRatioSelection = selection => {
-    this.setState({
-      aspectRatio: selection
-    });
+  handleResourceToggle = value => {
+    let props = this.state.props;
+    props.resourcePicker = value;
+    this.setState({ props });
+  };
+
+  handleAspectRatioSelection = value => {
+    let props = this.state.props;
+    props.aspectRatio = value;
+    this.setState({ props });
   };
 
   handleTitleChange = newTitle => {
-    this.setState({
-      title: newTitle
-    });
+    let props = this.state.props;
+    props.title = newTitle;
+    this.setState({ props });
+  };
+
+  state = {
+    props: {
+      resourcePicker: false,
+      aspectRatio: "16-9",
+      title: "",
+      products: []
+    },
+    methods: {
+      handleResourceSelection: this.handleResourceSelection,
+      handleResourceToggle: this.handleResourceToggle,
+      handleAspectRatioSelection: this.handleAspectRatioSelection,
+      handleTitleChange: this.handleTitleChange
+    }
   };
 
   render() {
     return (
-      <Page
-        fullWidth={true}
-        primaryAction={{
-          title: "Product Recommendations",
-          content: "Select products",
-          onAction: () => this.setState({ resourcePicker: true })
-        }}
-      >
-        <ResourcePicker
-          open={this.state.resourcePicker}
-          resourceType="Product"
-          showVariants={false}
-          onCancel={() => {
-            this.setState({ resourcePicker: false });
-          }}
-          onSelection={resources => this.handleResourceSelection(resources)}
-        />
-        <Layout>
-          <Layout.Section oneHalf>
-            <Card title="Options">
-              <Card.Section title="Images">
-                <ChoiceList
-                  title="Product image aspect ratio"
-                  choices={[
-                    { label: "Square", value: "square" },
-                    { label: "Rectangle (16:9)", value: "16-9" }
-                  ]}
-                  selected={this.state.aspectRatio}
-                  onChange={this.handleAspectRatioSelection}
-                />
-              </Card.Section>
-            </Card>
-          </Layout.Section>
-          <Layout.Section oneHalf>
-            <Card title="Sections">
-              <Card.Section>
-                <TextField
-                  label="Promotion Title"
-                  value={this.state.title}
-                  onChange={this.handleTitleChange}
-                />
-              </Card.Section>
-            </Card>
-          </Layout.Section>
-        </Layout>
-        <preview-frame>
-          <h2>Preview</h2>
-          <div className="compillery-product-recommendations">
-            <h2 className="product-items__title">{this.state.title}</h2>
-            <ProductItems
-              items={this.state.selectedProducts}
-              aspectRatio={this.state.aspectRatio}
-            />
-          </div>
-        </preview-frame>
-      </Page>
+      <WidgetContext.Provider value={this.state}>
+        <DashboardWidget />
+        <ProductRecommendations />
+      </WidgetContext.Provider>
     );
   }
 }

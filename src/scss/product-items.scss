@@ -2,7 +2,7 @@
 @import "mixins";
 
 @mixin product-items__title() {
-  .product-items__title {
+  .product-items__title:not(:empty) {
     text-align: center;
     font-size: em(16);
     margin-bottom: em(43);
@@ -10,7 +10,7 @@
 }
 
 @mixin product-items__title--md() {
-  .product-items__title {
+  .product-items__title:not(:empty) {
     font-size: em(18);
   }
 }
