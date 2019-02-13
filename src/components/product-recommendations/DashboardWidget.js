@@ -29,7 +29,6 @@ export const DashboardWidget = () => (
           onAction: () => handleResourceToggle(true)
         }}
       >
-        {console.log(resourcePicker)}
         <ResourcePicker
           open={resourcePicker}
           resourceType="Product"
