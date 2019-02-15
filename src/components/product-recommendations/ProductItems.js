@@ -3,15 +3,6 @@ import { ProductItem } from "./ProductItem";
 import { chunkArray } from "./Utils";
 import { WidgetContext } from "./WidgetContext";
 
-const ProductRow = ({ children }) => (
-  <div className="product-items__grid">
-    {children}
-    <div className="product-items__break--1"> </div>
-    <div className="product-items__break--2"> </div>
-    <div className="product-items__break--3"> </div>
-  </div>
-);
-
 const generateProductItems = (items, aspectRatio) =>
   items.map(product => (
     <ProductItem
@@ -29,7 +20,12 @@ export const ProductItems = () => (
     {({ props: { products, aspectRatio } }) => {
       let productItems = chunkArray(generateProductItems(products, aspectRatio), 4);
       return productItems.map((items, index) => (
-        <ProductRow key={`row-${index}`}>{items}</ProductRow>
+          <div key={`row-${index}`} className="product-items__grid">
+              {items}
+              <div className="product-items__break--1"> </div>
+              <div className="product-items__break--2"> </div>
+              <div className="product-items__break--3"> </div>
+          </div>
       ));
     }}
   </WidgetContext.Consumer>
