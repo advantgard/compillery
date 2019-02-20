@@ -6,7 +6,12 @@ export const WidgetContext = createContext({
             resourcePicker: false,
             aspectRatio: "16-9",
             title: "",
-            products: []
+            products: [],
+            buttonColor: {
+                hue: 168,
+                saturation: 0.79,
+                brightness: 0.48
+            }
         },
         methods: {
             handleResourceSelection: () => {},

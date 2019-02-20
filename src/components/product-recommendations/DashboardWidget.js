@@ -6,18 +6,20 @@ import {
   Card,
   ResourcePicker,
   ChoiceList,
-  TextField
+  TextField,
+  ColorPicker
 } from "@shopify/polaris";
 
 export const DashboardWidget = () => (
   <WidgetContext.Consumer>
     {({
-      props: { resourcePicker, aspectRatio, title },
+      props: { resourcePicker, aspectRatio, title, buttonColor },
       methods: {
         handleResourceSelection,
         handleResourceToggle,
         handleAspectRatioSelection,
-        handleTitleChange
+        handleTitleChange,
+        handleColorChange
       }
     }) => (
       <Page
@@ -34,7 +36,9 @@ export const DashboardWidget = () => (
           resourceType="Product"
           showVariants={false}
           onCancel={() => handleResourceToggle(false)}
-          onSelection={resources => handleResourceSelection(resources.selection)}
+          onSelection={resources =>
+            handleResourceSelection(resources.selection)
+          }
         />
         <Layout>
           <Layout.Section oneHalf>
@@ -61,6 +65,9 @@ export const DashboardWidget = () => (
                   value={title}
                   onChange={title => handleTitleChange(title)}
                 />
+              </Card.Section>
+              <Card.Section>
+                <ColorPicker color={buttonColor} onChange={handleColorChange} />
               </Card.Section>
             </Card>
           </Layout.Section>

@@ -22,6 +22,12 @@ class Dashboard extends React.Component {
     this.setState({ props });
   };
 
+  handleColorChange = value => {
+    let props = this.state.props;
+    props.buttonColor = value;
+    this.setState({ props });
+  };
+
   handleTitleChange = newTitle => {
     let props = this.state.props;
     props.title = newTitle;
@@ -33,13 +39,19 @@ class Dashboard extends React.Component {
       resourcePicker: false,
       aspectRatio: "16-9",
       title: "",
-      products: []
+      products: [],
+      buttonColor: {
+        hue: 168,
+        saturation: 0.79,
+        brightness: 0.48
+      }
     },
     methods: {
       handleResourceSelection: this.handleResourceSelection,
       handleResourceToggle: this.handleResourceToggle,
       handleAspectRatioSelection: this.handleAspectRatioSelection,
-      handleTitleChange: this.handleTitleChange
+      handleTitleChange: this.handleTitleChange,
+      handleColorChange: this.handleColorChange
     }
   };
 

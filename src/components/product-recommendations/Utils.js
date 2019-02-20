@@ -7,3 +7,7 @@ export const chunkArray = (array, chunks) => {
 
   return results;
 };
+
+export const colorHSL = color => {
+  return `hsl(${color.hue},${color.saturation * 100}%,${color.brightness * 100}%)`;
+};

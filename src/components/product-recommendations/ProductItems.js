@@ -3,7 +3,7 @@ import { ProductItem } from "./ProductItem";
 import { chunkArray } from "./Utils";
 import { WidgetContext } from "./WidgetContext";
 
-const generateProductItems = (items, aspectRatio) =>
+const generateProductItems = (items, buttonColor, aspectRatio) =>
   items.map(product => (
     <ProductItem
       key={product.variants[0].id}
@@ -12,13 +12,14 @@ const generateProductItems = (items, aspectRatio) =>
       imgUrl={product.images[0].originalSrc}
       aspectRatio={aspectRatio}
       url={`/products/${product.handle}`}
+      buttonColor={ buttonColor }
     />
   ));
 
 export const ProductItems = () => (
   <WidgetContext.Consumer>
-    {({ props: { products, aspectRatio } }) => {
-      let productItems = chunkArray(generateProductItems(products, aspectRatio), 4);
+    {({ props: { products, aspectRatio, buttonColor } }) => {
+      let productItems = chunkArray(generateProductItems(products, buttonColor, aspectRatio), 4);
       return productItems.map((items, index) => (
           <div key={`row-${index}`} className="product-items__grid">
               {items}
