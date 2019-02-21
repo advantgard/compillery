@@ -7,7 +7,8 @@ import {
   ResourcePicker,
   ChoiceList,
   TextField,
-  ColorPicker
+  ColorPicker,
+  Button
 } from "@shopify/polaris";
 
 export const DashboardWidget = () => (
@@ -22,15 +23,7 @@ export const DashboardWidget = () => (
         handleColorChange
       }
     }) => (
-      <Page
-        title="Product Recommendations"
-        fullWidth={true}
-        primaryAction={{
-          title: "Product Recommendations",
-          content: "Select products",
-          onAction: () => handleResourceToggle(true)
-        }}
-      >
+      <Page title="Product Recommendations" fullWidth={true}>
         <ResourcePicker
           open={resourcePicker}
           resourceType="Product"
@@ -53,6 +46,9 @@ export const DashboardWidget = () => (
                   selected={aspectRatio}
                   onChange={choice => handleAspectRatioSelection(choice)}
                 />
+              </Card.Section>
+              <Card.Section title="Add Products">
+                <Button onClick={handleResourceToggle.bind(null,true)}>Add Products</Button>
               </Card.Section>
             </Card>
           </Layout.Section>
