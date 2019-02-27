@@ -10,28 +10,13 @@ class Dashboard extends React.Component {
     this.setState({props});
   };
 
-  handleResourceToggle = value => {
+  handleSingleStateChange = (key, value) => {
     let props = this.state.props;
-    props.resourcePicker = value;
-    this.setState({ props });
-  };
-
-  handleAspectRatioSelection = value => {
-    let props = this.state.props;
-    props.aspectRatio = value;
-    this.setState({ props });
-  };
-
-  handleColorChange = value => {
-    let props = this.state.props;
-    props.buttonColor = value;
-    this.setState({ props });
-  };
-
-  handleTitleChange = newTitle => {
-    let props = this.state.props;
-    props.title = newTitle;
-    this.setState({ props });
+    console.log(value);
+    if(props.hasOwnProperty(key)) {
+      props[key] = value;
+      this.setState({props});
+    }
   };
 
   state = {
@@ -48,10 +33,7 @@ class Dashboard extends React.Component {
     },
     methods: {
       handleResourceSelection: this.handleResourceSelection,
-      handleResourceToggle: this.handleResourceToggle,
-      handleAspectRatioSelection: this.handleAspectRatioSelection,
-      handleTitleChange: this.handleTitleChange,
-      handleColorChange: this.handleColorChange
+      handleSingleStateChange: this.handleSingleStateChange
     }
   };
 

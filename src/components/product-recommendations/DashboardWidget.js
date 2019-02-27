@@ -17,10 +17,7 @@ export const DashboardWidget = () => (
       props: { resourcePicker, aspectRatio, title, buttonColor },
       methods: {
         handleResourceSelection,
-        handleResourceToggle,
-        handleAspectRatioSelection,
-        handleTitleChange,
-        handleColorChange
+        handleSingleStateChange
       }
     }) => (
       <Page title="Product Recommendations" fullWidth={true}>
@@ -28,7 +25,7 @@ export const DashboardWidget = () => (
           open={resourcePicker}
           resourceType="Product"
           showVariants={false}
-          onCancel={() => handleResourceToggle(false)}
+          onCancel={() => handleSingleStateChange("resourcePicker", false)}
           onSelection={resources =>
             handleResourceSelection(resources.selection)
           }
@@ -44,11 +41,19 @@ export const DashboardWidget = () => (
                     { label: "Landscape (16:9)", value: "16-9" }
                   ]}
                   selected={aspectRatio}
-                  onChange={choice => handleAspectRatioSelection(choice)}
+                  onChange={choice =>
+                    handleSingleStateChange("aspectRatio", choice)
+                  }
                 />
               </Card.Section>
               <Card.Section title="Add Products">
-                <Button onClick={handleResourceToggle.bind(null,true)}>Add Products</Button>
+                <Button
+                  onClick={() =>
+                    handleSingleStateChange("resourcePicker", true)
+                  }
+                >
+                  Add Products
+                </Button>
               </Card.Section>
             </Card>
           </Layout.Section>
@@ -59,11 +64,16 @@ export const DashboardWidget = () => (
                   readOnly={false}
                   label="Promotion Title"
                   value={title}
-                  onChange={title => handleTitleChange(title)}
+                  onChange={title => handleSingleStateChange("title", title)}
                 />
               </Card.Section>
               <Card.Section>
-                <ColorPicker color={buttonColor} onChange={handleColorChange} />
+                <ColorPicker
+                  color={buttonColor}
+                  onChange={color =>
+                    handleSingleStateChange("buttonColor", color)
+                  }
+                />
               </Card.Section>
             </Card>
           </Layout.Section>
