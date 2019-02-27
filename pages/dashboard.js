@@ -12,7 +12,6 @@ class Dashboard extends React.Component {
 
   handleSingleStateChange = (key, value) => {
     let props = this.state.props;
-    console.log(value);
     if(props.hasOwnProperty(key)) {
       props[key] = value;
       this.setState({props});

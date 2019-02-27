@@ -1,0 +1,127 @@
+@import "variables";
+@import "mixins";
+
+%tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: em(137);
+  height: em(137);
+  border-radius: em($base-border-radius);
+  cursor: pointer;
+}
+
+%tile__icon {
+  display: inline-block;
+  border: em(3) solid;
+  border-radius: em(99);
+
+  width: em(40);
+  height: em(40);
+
+  &:after {
+    content: "";
+    display: inline-block;
+
+    position: relative;
+    top: em(5);
+
+    width: em(7);
+    height: em(15);
+
+    border-right-style: solid;
+    border-right-width: em(3);
+
+    border-bottom-style: solid;
+    border-bottom-width: em(3);
+
+    @include rotate(45);
+  }
+}
+
+@mixin tile() {
+  .tile {
+    @extend %tile;
+    background: transparent;
+    border: em(1) solid $base-border-color-light;
+  }
+}
+
+@mixin tile--selected() {
+  .tile--selected {
+    background: $base-background-color;
+    border: 0;
+  }
+}
+
+@mixin tile--sm() {
+  .tile {
+    width: em(180);
+    height: em(125);
+  }
+}
+
+@mixin tile--lg() {
+  .tile {
+    width: em(137);
+    height: em(137);
+  }
+}
+
+@mixin tile__container() {
+  .tile__container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: em(10);
+    @include columns(2, $columnMargin);
+  }
+}
+
+@mixin tile__container--sm() {
+  .tile__container {
+    @include columns(4, $columnMargin);
+  }
+}
+
+@mixin tile__container--lg() {
+  .tile__container {
+    @include columns(8, $columnMargin);
+  }
+}
+
+@mixin tile__icon() {
+  .tile__icon {
+    @extend %tile__icon;
+
+    border-color: $icon-color;
+
+    &:after {
+      border-color: $icon-color;
+    }
+  }
+}
+
+@mixin tile__icon--selected() {
+  .tile__icon--selected {
+    border-color: $icon-color-light;
+
+    &:after {
+      border-color: $icon-color-light;
+    }
+  }
+}
+
+@mixin tile__label() {
+  .tile__label {
+    color: $base-font-color;
+    font-size: em(13);
+    margin-top: em(25);
+  }
+}
+
+@mixin tile__label--selected() {
+  .tile__label--selected {
+    color: $base-font-color-light;
+  }
+}

@@ -2,6 +2,7 @@
 
 @import "variables";
 @import "mixins";
+@import "tile";
 @import "product-item";
 @import "product-items";
 
@@ -16,7 +17,13 @@
   background-color: #fff;
 
   // Component styles
-
+  @include tile;
+  @include tile--selected;
+  @include tile__container;
+  @include tile__icon;
+  @include tile__icon--selected;
+  @include tile__label;
+  @include tile__label--selected;
   @include product-item__image-wrapper--square;
   @include product-item__image-wrapper--16-9;
   @include product-item__image;
@@ -38,6 +45,8 @@
 
   // Styles for Mobile Tablet Portrait (Small Screens)
   @media screen and (min-width: $screen-sm-min) {
+    @include tile--sm;
+    @include tile__container--sm;
     @include product-item__image-wrapper--square--sm;
     @include product-item__image-wrapper--16-9--sm;
     @include product-item__title--sm;
@@ -60,6 +69,8 @@
 
   // Styles for Low resolution displays (Large Screens)
   @media screen and (min-width: $screen-lg-min) {
+    @include tile--lg;
+    @include tile--container--lg;
     @include product-item__image-wrapper--square--lg;
     @include product-item__image-wrapper--16-9--lg;
     @include product-item__action--lg;
