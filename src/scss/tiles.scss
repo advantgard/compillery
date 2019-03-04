@@ -1,0 +1,31 @@
+@import "variables";
+@import "mixins";
+
+@mixin tiles() {
+  .tiles {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@mixin tiles__container() {
+  .tiles__container {
+    padding: 0 em(10);
+    position: relative;
+  }
+}
+
+@mixin tiles__container--sm() {
+  .tiles__container {
+    width: $container-sm;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+@mixin tiles__container--lg() {
+  .tiles__container {
+    width: $container-lg;
+  }
+}

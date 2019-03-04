@@ -7,6 +7,8 @@ export const WidgetContext = createContext({
             aspectRatio: "16-9",
             title: "",
             products: [],
+            tiles: [],
+            selectedTiles: [],
             buttonColor: {
                 hue: 168,
                 saturation: 0.79,

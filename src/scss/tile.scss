@@ -9,6 +9,7 @@
   width: em(137);
   height: em(137);
   border-radius: em($base-border-radius);
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -25,7 +26,8 @@
     display: inline-block;
 
     position: relative;
-    top: em(5);
+    top: em(7);
+    left: em(14);
 
     width: em(7);
     height: em(15);
