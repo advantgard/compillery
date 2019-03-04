@@ -4,6 +4,7 @@ import {
   Page,
   Layout,
   Card,
+  ResourceList,
   ResourcePicker,
   ChoiceList,
   TextField,
@@ -11,13 +12,22 @@ import {
   Button
 } from "@shopify/polaris";
 
+const bulkActions = [
+  {
+    content: "Remove from list",
+    onAction: () => console.log("Potato")
+  }
+];
+
 export const DashboardWidget = () => (
   <WidgetContext.Consumer>
     {({
-      props: { resourcePicker, aspectRatio, title, buttonColor },
+      settings: { selectedProductItems },
+      props: { resourcePicker, products, aspectRatio, title, buttonColor },
       methods: {
         handleResourceSelection,
-        handleSingleStateChange
+        handleSingleStateChange,
+        handleSettingChange
       }
     }) => (
       <Page title="Product Recommendations" fullWidth={true}>
@@ -54,6 +64,26 @@ export const DashboardWidget = () => (
                 >
                   Add Products
                 </Button>
+              </Card.Section>
+              <Card.Section>
+                <ResourceList
+                  resourceName={{ singular: "product", plural: "products" }}
+                  items={products}
+                  selectedItems={selectedProductItems}
+                  promotedBulkActions={bulkActions}
+                  onSelectionChange={items => {
+                    handleSettingChange("selectedProductItems", items);
+                  }}
+                  renderItem={item => {
+                    const { id, title } = item;
+
+                    return (
+                      <ResourceList.Item id={id} url="#">
+                        <h3>{title}</h3>
+                      </ResourceList.Item>
+                    );
+                  }}
+                />
               </Card.Section>
             </Card>
           </Layout.Section>

@@ -17,6 +17,14 @@ class Dashboard extends React.Component {
     this.setState(props);
   };
 
+  handleSettingChange = (key, value) => {
+    let settings = this.state.settings;
+    if (settings.hasOwnProperty(key)) {
+      settings[key] = value;
+      this.setState({ settings });
+    }
+  };
+
   handleSingleStateChange = (key, value) => {
     let props = this.state.props;
     if (props.hasOwnProperty(key)) {
@@ -26,6 +34,9 @@ class Dashboard extends React.Component {
   };
 
   state = {
+    settings: {
+      selectedProductItems: []
+    },
     props: {
       resourcePicker: false,
       aspectRatio: "16-9",
@@ -77,6 +88,7 @@ class Dashboard extends React.Component {
     methods: {
       handleResourceSelection: this.handleResourceSelection,
       handleTileSelection: this.handleTileSelection,
+      handleSettingChange: this.handleSettingChange,
       handleSingleStateChange: this.handleSingleStateChange
     }
   };
