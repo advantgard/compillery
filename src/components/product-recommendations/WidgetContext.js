@@ -20,6 +20,7 @@ export const WidgetContext = createContext({
     handleResourceSelection: () => {},
     handleTileSelection: () => {},
     handleSettingChange: () => {},
-    handleSingleStateChange: () => {}
+    handleSingleStateChange: () => {},
+    handleRemoveSelectedProduct: () => {}
   }
 });

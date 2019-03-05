@@ -12,13 +12,6 @@ import {
   Button
 } from "@shopify/polaris";
 
-const bulkActions = [
-  {
-    content: "Remove from list",
-    onAction: () => console.log("Potato")
-  }
-];
-
 export const DashboardWidget = () => (
   <WidgetContext.Consumer>
     {({
@@ -27,7 +20,8 @@ export const DashboardWidget = () => (
       methods: {
         handleResourceSelection,
         handleSingleStateChange,
-        handleSettingChange
+        handleSettingChange,
+        handleRemoveSelectedProduct
       }
     }) => (
       <Page title="Product Recommendations" fullWidth={true}>
@@ -70,7 +64,14 @@ export const DashboardWidget = () => (
                   resourceName={{ singular: "product", plural: "products" }}
                   items={products}
                   selectedItems={selectedProductItems}
-                  promotedBulkActions={bulkActions}
+                  promotedBulkActions={[
+                    {
+                      content: "Remove from list",
+                      onAction: () => {
+                        handleRemoveSelectedProduct(selectedProductItems)
+                      }
+                    }
+                  ]}
                   onSelectionChange={items => {
                     handleSettingChange("selectedProductItems", items);
                   }}

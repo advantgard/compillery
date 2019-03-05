@@ -33,6 +33,21 @@ class Dashboard extends React.Component {
     }
   };
 
+  handleRemoveSelectedProduct = ids => {
+    let props = this.state.props;
+    if (props.products) {
+      for (let id in ids) {
+        props.products.splice(
+          props.products.findIndex(item => {
+            return item.id === id;
+          }),
+          1
+        );
+      }
+      this.setState({ props });
+    }
+  };
+
   state = {
     settings: {
       selectedProductItems: []
@@ -45,40 +60,7 @@ class Dashboard extends React.Component {
       recommendation: null,
       products: [],
       selectedTiles: [],
-      tiles: [
-        {
-          id: 11,
-          label: "Recommends 1",
-          recommendation: {
-            id: 1,
-            weight: 100
-          }
-        },
-        {
-          id: 22,
-          label: "Recommends 3",
-          recommendation: {
-            id: 3,
-            weight: 300
-          }
-        },
-        {
-          id: 33,
-          label: "Recommends 3",
-          recommendation: {
-            id: 3,
-            weight: 300
-          }
-        },
-        {
-          id: 44,
-          label: "Recommends 2",
-          recommendation: {
-            id: 2,
-            weight: 200
-          }
-        }
-      ],
+      tiles: [],
       buttonColor: {
         hue: 168,
         saturation: 0.79,
@@ -89,7 +71,8 @@ class Dashboard extends React.Component {
       handleResourceSelection: this.handleResourceSelection,
       handleTileSelection: this.handleTileSelection,
       handleSettingChange: this.handleSettingChange,
-      handleSingleStateChange: this.handleSingleStateChange
+      handleSingleStateChange: this.handleSingleStateChange,
+      handleRemoveSelectedProduct: this.handleRemoveSelectedProduct
     }
   };
 
