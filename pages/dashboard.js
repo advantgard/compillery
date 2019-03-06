@@ -14,7 +14,16 @@ class Dashboard extends React.Component {
   handleTileSelection = tile => {
     let props = this.state.props;
     props = Recommendation(props, tile);
-    this.setState(props);
+    this.setState({props});
+  };
+
+  handleAddTile = tile => {
+    let props = this.state.props;
+    let settings = this.state.settings;
+    props.tiles.push(tile);
+    settings.recommendationLabel = "";
+    settings.recommendationProductPicker = [];
+    this.setState({props, settings});
   };
 
   handleSettingChange = (key, value) => {
@@ -54,7 +63,9 @@ class Dashboard extends React.Component {
     settings: {
       resourcePicker: false,
       selectedProductItems: [],
-      currentTab: 0
+      currentTab: 0,
+      recommendationLabel: "",
+      recommendationProductPicker: []
     },
     props: {
       aspectRatio: "16-9",
@@ -75,6 +86,7 @@ class Dashboard extends React.Component {
     methods: {
       handleResourceSelection: this.handleResourceSelection,
       handleTileSelection: this.handleTileSelection,
+      handleAddTile: this.handleAddTile,
       handleSettingChange: this.handleSettingChange,
       handleSingleStateChange: this.handleSingleStateChange,
       handleRemoveSelectedProduct: this.handleRemoveSelectedProduct

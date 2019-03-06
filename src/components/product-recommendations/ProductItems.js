@@ -18,7 +18,7 @@ const generateProductItems = (items, buttonColor, aspectRatio) =>
 
 export const ProductItems = () => (
   <WidgetContext.Consumer>
-    {({ props: { products, aspectRatio, buttonColor } }) => {
+    {({ props: { products, aspectRatio }, theme: { buttonColor } }) => {
       let productItems = chunkArray(generateProductItems(products, buttonColor, aspectRatio), 4);
       return productItems.map((items, index) => (
           <div key={`row-${index}`} className="product-items__grid">

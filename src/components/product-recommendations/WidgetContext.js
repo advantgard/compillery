@@ -4,7 +4,9 @@ export const WidgetContext = createContext({
   settings: {
     resourcePicker: false,
     selectedProductItems: [],
-    currentTab: 0
+    currentTab: 0,
+    recommendationLabel: "",
+    recommendationProductPicker: []
   },
   props: {
     aspectRatio: "16-9",

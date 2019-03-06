@@ -1,6 +1,8 @@
 import React from "react";
 import { WidgetContext } from "./WidgetContext";
+import { RecommendationEditor } from "./RecommendationEditor";
 import { Page, Layout, Card, Tabs } from "@shopify/polaris";
+import {ProductsPickerModal} from "./ProductsPickerModal";
 
 const DashboardTabs = [
   {
@@ -39,12 +41,13 @@ export const DashboardWidget = () => (
             <Card.Section>
               <Layout>
                 <Layout.Section>
-
+                  <RecommendationEditor/>
                 </Layout.Section>
               </Layout>
             </Card.Section>
           </Tabs>
         </Card>
+        <ProductsPickerModal/>
       </Page>
     )}
   </WidgetContext.Consumer>

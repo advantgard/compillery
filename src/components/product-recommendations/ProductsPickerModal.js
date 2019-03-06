@@ -5,7 +5,7 @@ import { ResourcePicker } from "@shopify/polaris";
 export const ProductsPickerModal = () => (
   <WidgetContext.Consumer>
     {({
-      props: { resourcePicker },
+      settings: { resourcePicker },
       methods: { handleSettingChange, handleResourceSelection }
     }) => (
       <ResourcePicker
