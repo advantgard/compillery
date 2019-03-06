@@ -6,13 +6,13 @@ export const ProductsPickerModal = () => (
   <WidgetContext.Consumer>
     {({
       props: { resourcePicker },
-      methods: { handleSingleStateChange, handleResourceSelection }
+      methods: { handleSettingChange, handleResourceSelection }
     }) => (
       <ResourcePicker
         open={resourcePicker}
         resourceType="Product"
         showVariants={false}
-        onCancel={() => handleSingleStateChange("resourcePicker", false)}
+        onCancel={() => handleSettingChange("resourcePicker", false)}
         onSelection={resources => handleResourceSelection(resources.selection)}
       />
     )}

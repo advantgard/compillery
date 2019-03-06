@@ -52,17 +52,19 @@ class Dashboard extends React.Component {
 
   state = {
     settings: {
+      resourcePicker: false,
       selectedProductItems: []
     },
     props: {
-      resourcePicker: false,
       aspectRatio: "16-9",
-      title: "",
+      headerLabel: "",
       active: null,
       recommendation: null,
       products: [],
       selectedTiles: [],
-      tiles: [],
+      tiles: []
+    },
+    theme: {
       buttonColor: {
         hue: 168,
         saturation: 0.79,

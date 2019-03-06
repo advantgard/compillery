@@ -1,15 +1,20 @@
 import { createContext } from "react";
 
 export const WidgetContext = createContext({
-  props: {
+  settings: {
     resourcePicker: false,
+    selectedProductItems: []
+  },
+  props: {
     aspectRatio: "16-9",
-    title: "",
+    headerLabel: "",
     active: null,
     recommendation: null,
     products: [],
     tiles: [],
-    selectedTiles: [],
+    selectedTiles: []
+  },
+  theme: {
     buttonColor: {
       hue: 168,
       saturation: 0.79,
