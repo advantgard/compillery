@@ -35,16 +35,18 @@ class Dashboard extends React.Component {
 
   handleRemoveSelectedProduct = ids => {
     let props = this.state.props;
+    let settings = this.state.settings;
     if (props.products) {
-      for (let id in ids) {
+      ids.forEach(id => {
         props.products.splice(
           props.products.findIndex(item => {
             return item.id === id;
           }),
           1
         );
-      }
-      this.setState({ props });
+        settings.selectedProductItems = [];
+      });
+      this.setState({ props, settings });
     }
   };
 
