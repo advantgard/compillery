@@ -53,7 +53,8 @@ class Dashboard extends React.Component {
   state = {
     settings: {
       resourcePicker: false,
-      selectedProductItems: []
+      selectedProductItems: [],
+      currentTab: 0
     },
     props: {
       aspectRatio: "16-9",

@@ -3,7 +3,8 @@ import { createContext } from "react";
 export const WidgetContext = createContext({
   settings: {
     resourcePicker: false,
-    selectedProductItems: []
+    selectedProductItems: [],
+    currentTab: 0
   },
   props: {
     aspectRatio: "16-9",

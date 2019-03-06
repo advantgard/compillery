@@ -1,22 +1,51 @@
 import React from "react";
-import { Page, Layout, Card } from "@shopify/polaris";
+import { WidgetContext } from "./WidgetContext";
+import { Page, Layout, Card, Tabs } from "@shopify/polaris";
+
+const DashboardTabs = [
+  {
+    id: "products",
+    content: "Products",
+    accessibilityLabel: "Products",
+    panelID: "dashboard-products"
+  },
+  {
+    id: "theme",
+    content: "Theme",
+    accessibilityLabel: "Theme",
+    panelID: "dashboard-theme"
+  },
+  {
+    id: "recommendations",
+    content: "Recommendations",
+    accessibilityLabel: "Recommendations",
+    panelID: "dashboard-recommendations"
+  }
+];
 
 export const DashboardWidget = () => (
-  <Page title="Product Recommendations" fullWidth={true}>
-    <Layout>
-      <Layout.Section oneHalf>
-        <Card title="Options">
-          <Card.Section title="Images" />
-          <Card.Section title="Add Products" />
-          <Card.Section />
+  <WidgetContext.Consumer>
+    {({ settings: { currentTab }, methods: { handleSettingChange } }) => (
+      <Page title="Product Recommendations" fullWidth={true}>
+        <Card>
+          <Tabs
+            tabs={DashboardTabs}
+            selected={currentTab}
+            onSelect={selectedTabIndex => {
+              handleSettingChange("currentTab", selectedTabIndex);
+            }}
+            fitted
+          >
+            <Card.Section>
+              <Layout>
+                <Layout.Section>
+
+                </Layout.Section>
+              </Layout>
+            </Card.Section>
+          </Tabs>
         </Card>
-      </Layout.Section>
-      <Layout.Section oneHalf>
-        <Card title="Sections">
-          <Card.Section />
-          <Card.Section />
-        </Card>
-      </Layout.Section>
-    </Layout>
-  </Page>
+      </Page>
+    )}
+  </WidgetContext.Consumer>
 );
