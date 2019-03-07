@@ -13,7 +13,7 @@ class Dashboard extends React.Component {
 
   handleTileSelection = tile => {
     let props = this.state.props;
-    props = Recommendation(props, tile);
+    props = {...props, ...Recommendation(props, tile)};
     this.setState({props});
   };
 
