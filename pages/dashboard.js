@@ -65,7 +65,7 @@ class Dashboard extends React.Component {
       selectedProductItems: [],
       currentTab: 0,
       recommendationLabel: "",
-      recommendationProductPicker: []
+      recommendationProductPicker: {}
     },
     props: {
       aspectRatio: "16-9",

@@ -1,6 +1,12 @@
 import React from "react";
 import { WidgetContext } from "./WidgetContext";
-import { TextField, FormLayout, Button, OptionList } from "@shopify/polaris";
+import {
+  TextField,
+  FormLayout,
+  Button,
+  OptionList,
+  Scrollable
+} from "@shopify/polaris";
 
 const RecommendedProductPicker = () => (
   <WidgetContext.Consumer>
@@ -8,22 +14,34 @@ const RecommendedProductPicker = () => (
       settings: { recommendationProductPicker },
       props: { products },
       methods: { handleSettingChange }
-    }) => (
-      <OptionList
-        title="Recommends product:"
-        selected={recommendationProductPicker}
-        onChange={newValue => {
-          handleSettingChange("recommendationProductPicker", newValue);
-        }}
-        options={products.map(product => {
-          return { value: product.id, label: product.title };
-        })}
-      />
-    )}
+    }) => {
+      const filteredProductsData = products.map(product => {
+        return { value: product.id, label: product.title };
+      });
+      return (
+        <Scrollable shadow style={{ maxHeight: "200px" }}>
+          <OptionList
+            title="Recommends product:"
+            selected={recommendationProductPicker.value || []}
+            onChange={newValue => {
+              const index = filteredProductsData.findIndex(
+                item => item.value === newValue.toString()
+              );
+              const newData = {
+                value: newValue,
+                label: filteredProductsData[index].label
+              };
+              handleSettingChange("recommendationProductPicker", newData);
+            }}
+            options={filteredProductsData}
+          />
+        </Scrollable>
+      );
+    }}
   </WidgetContext.Consumer>
 );
 
-export const RecommendationEditor = () => (
+export const TilesEditor = () => (
   <WidgetContext.Consumer>
     {({
       settings: { recommendationLabel, recommendationProductPicker },
@@ -46,10 +64,14 @@ export const RecommendationEditor = () => (
                   handleAddTile({
                     id: tiles.length + 1,
                     label: recommendationLabel,
-                    recommendation: { id: recommendationProductPicker, weight: 100 }
+                    recommendation: {
+                      id: recommendationProductPicker.value,
+                      name: recommendationProductPicker.label,
+                      weight: 100 * (tiles.length + 1)
+                    }
                   });
                 }}
-                disabled={!recommendationProductPicker.length}
+                disabled={!Object.keys(recommendationProductPicker).length}
               >
                 Add Tile
               </Button>
@@ -62,7 +84,7 @@ export const RecommendationEditor = () => (
             handleSettingChange("resourcePicker", true);
           }}
         >
-          Add Product
+          Add Products
         </Button>
       </FormLayout>
     )}

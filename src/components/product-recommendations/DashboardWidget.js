@@ -1,6 +1,7 @@
 import React from "react";
 import { WidgetContext } from "./WidgetContext";
-import { RecommendationEditor } from "./RecommendationEditor";
+import { TilesEditor } from "./TilesEditor";
+import { TilesList } from "./TilesList";
 import { Page, Layout, Card, Tabs } from "@shopify/polaris";
 import {ProductsPickerModal} from "./ProductsPickerModal";
 
@@ -40,8 +41,11 @@ export const DashboardWidget = () => (
           >
             <Card.Section>
               <Layout>
-                <Layout.Section>
-                  <RecommendationEditor/>
+                <Layout.Section oneHalf>
+                  <TilesEditor/>
+                </Layout.Section>
+                <Layout.Section oneHalf>
+                  <TilesList />
                 </Layout.Section>
               </Layout>
             </Card.Section>
