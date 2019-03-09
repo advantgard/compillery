@@ -27,6 +27,8 @@ export const WidgetContext = createContext({
   methods: {
     handleResourceSelection: () => {},
     handleTileSelection: () => {},
+    handleAddTile: () => {},
+    handleLoadTile: () => {},
     handleSettingChange: () => {},
     handleSingleStateChange: () => {},
     handleRemoveSelectedProduct: () => {}

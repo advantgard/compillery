@@ -26,6 +26,13 @@ class Dashboard extends React.Component {
     this.setState({props, settings});
   };
 
+  handleLoadTile = tile => {
+    let settings = this.state.settings;
+    settings.recommendationLabel = tile.label;
+    settings.recommendationProductPicker = [tile.recommendation.name];
+    this.setState({settings});
+  };
+
   handleSettingChange = (key, value) => {
     let settings = this.state.settings;
     if (settings.hasOwnProperty(key)) {
@@ -87,6 +94,7 @@ class Dashboard extends React.Component {
       handleResourceSelection: this.handleResourceSelection,
       handleTileSelection: this.handleTileSelection,
       handleAddTile: this.handleAddTile,
+      handleLoadTile: this.handleLoadTile,
       handleSettingChange: this.handleSettingChange,
       handleSingleStateChange: this.handleSingleStateChange,
       handleRemoveSelectedProduct: this.handleRemoveSelectedProduct

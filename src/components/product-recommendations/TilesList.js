@@ -4,7 +4,7 @@ import { ResourceList } from "@shopify/polaris";
 
 export const TilesList = () => (
   <WidgetContext.Consumer>
-    {({ props: { tiles } }) => (
+    {({ props: { tiles }, methods: { handleLoadTile } }) => (
       <ResourceList
         title="Tiles"
         items={tiles}
@@ -15,7 +15,14 @@ export const TilesList = () => (
             recommendation: { name }
           } = tile;
           return (
-            <ResourceList.Item url={"#"} id={id}>
+            <ResourceList.Item
+              url={"#"}
+              id={id}
+              shortcutActions={[
+                { content: "Edit", onAction: () => handleLoadTile(tile) }
+              ]}
+              persistActions
+            >
               <h3>{`Tile label: ${label}`}</h3>
               <div>{`Recommends: ${name}`}</div>
             </ResourceList.Item>
