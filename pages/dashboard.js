@@ -13,8 +13,8 @@ class Dashboard extends React.Component {
 
   handleTileSelection = tile => {
     let props = this.state.props;
-    props = {...props, ...Recommendation(props, tile)};
-    this.setState({props});
+    props = { ...props, ...Recommendation(props, tile) };
+    this.setState({ props });
   };
 
   handleAddTile = tile => {
@@ -23,14 +23,17 @@ class Dashboard extends React.Component {
     props.tiles.push(tile);
     settings.recommendationLabel = "";
     settings.recommendationProductPicker = [];
-    this.setState({props, settings});
+    this.setState({ props, settings });
   };
 
   handleLoadTile = tile => {
     let settings = this.state.settings;
     settings.recommendationLabel = tile.label;
-    settings.recommendationProductPicker = [tile.recommendation.name];
-    this.setState({settings});
+    settings.recommendationProductPicker = {
+      value: tile.recommendation.id,
+      label: tile.recommendation.name
+    };
+    this.setState({ settings });
   };
 
   handleSettingChange = (key, value) => {

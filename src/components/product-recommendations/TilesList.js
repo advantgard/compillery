@@ -19,7 +19,8 @@ export const TilesList = () => (
               url={"#"}
               id={id}
               shortcutActions={[
-                { content: "Edit", onAction: () => handleLoadTile(tile) }
+                { content: "Edit", onAction: () => handleLoadTile(tile) },
+                { content: "Remove", onAction: () => console.log("remove") }
               ]}
               persistActions
             >
