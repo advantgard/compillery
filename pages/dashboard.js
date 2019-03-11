@@ -2,6 +2,7 @@ import { DashboardWidget } from "../src/components/product-recommendations/Dashb
 import { ProductRecommendations } from "../src/components/product-recommendations/ProductRecommendations";
 import { WidgetContext } from "../src/components/product-recommendations/WidgetContext";
 import { Recommendation } from "../src/components/product-recommendations/Recommendation";
+import {deleteObjectFromArrayById} from "../src/components/product-recommendations/Utils";
 
 class Dashboard extends React.Component {
   handleResourceSelection = resources => {
@@ -21,19 +22,41 @@ class Dashboard extends React.Component {
     let props = this.state.props;
     let settings = this.state.settings;
     props.tiles.push(tile);
-    settings.recommendationLabel = "";
+    settings.currentTileLabel = "";
     settings.recommendationProductPicker = [];
     this.setState({ props, settings });
   };
 
   handleLoadTile = tile => {
     let settings = this.state.settings;
-    settings.recommendationLabel = tile.label;
+    settings.currentTileLabel = tile.label;
+    settings.currentTileId = tile.id;
     settings.recommendationProductPicker = {
       value: tile.recommendation.id,
       label: tile.recommendation.name
     };
     this.setState({ settings });
+  };
+
+  handleEditTile = tile => {
+    let props = this.state.props;
+    let settings = this.state.settings;
+    const index = props.tiles.findIndex(
+        currentTile => currentTile.id === tile.id
+    );
+    if (index >= 0) {
+      props.tiles[index] = tile;
+      settings.currentTileId = null;
+      settings.currentTileLabel = "";
+      settings.recommendationProductPicker = {};
+      this.setState({ props, settings });
+    }
+  };
+
+  handleRemoveTile = tile => {
+    let props = this.state.props;
+    props.tiles = deleteObjectFromArrayById( props.tiles, tile.id );
+    this.setState({ props });
   };
 
   handleSettingChange = (key, value) => {
@@ -74,7 +97,8 @@ class Dashboard extends React.Component {
       resourcePicker: false,
       selectedProductItems: [],
       currentTab: 0,
-      recommendationLabel: "",
+      currentTileLabel: "",
+      currentTileId: null,
       recommendationProductPicker: {}
     },
     props: {
@@ -98,6 +122,8 @@ class Dashboard extends React.Component {
       handleTileSelection: this.handleTileSelection,
       handleAddTile: this.handleAddTile,
       handleLoadTile: this.handleLoadTile,
+      handleEditTile: this.handleEditTile,
+      handleRemoveTile: this.handleRemoveTile,
       handleSettingChange: this.handleSettingChange,
       handleSingleStateChange: this.handleSingleStateChange,
       handleRemoveSelectedProduct: this.handleRemoveSelectedProduct

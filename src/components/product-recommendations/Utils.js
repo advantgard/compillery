@@ -8,6 +8,10 @@ export const chunkArray = (array, chunks) => {
   return results;
 };
 
+export const deleteObjectFromArrayById = (array, id) =>
+  array.splice(array.findIndex(item => item.id === id), 1);
+
 export const colorHSL = color => {
-  return `hsl(${color.hue},${color.saturation * 100}%,${color.brightness * 100}%)`;
+  return `hsl(${color.hue},${color.saturation * 100}%,${color.brightness *
+    100}%)`;
 };

@@ -44,36 +44,47 @@ const RecommendedProductPicker = () => (
 export const TilesEditor = () => (
   <WidgetContext.Consumer>
     {({
-      settings: { recommendationLabel, recommendationProductPicker },
+      settings: {
+        currentTileLabel,
+        currentTileId,
+        recommendationProductPicker
+      },
       props: { tiles },
-      methods: { handleSettingChange, handleAddTile }
+      methods: { handleSettingChange, handleAddTile, handleEditTile }
     }) => (
       <FormLayout>
         <FormLayout.Group>
           <TextField
             label="Tile Label"
-            value={recommendationLabel}
+            value={currentTileLabel}
             onChange={newLabel => {
-              handleSettingChange("recommendationLabel", newLabel);
+              handleSettingChange("currentTileLabel", newLabel);
             }}
             readOnly={false}
             helpText="This is the label that appears on the tile"
             connectedRight={
               <Button
                 onClick={() => {
-                  handleAddTile({
-                    id: tiles.length + 1,
-                    label: recommendationLabel,
+                  const tile = {
+                    label: currentTileLabel,
                     recommendation: {
                       id: recommendationProductPicker.value,
                       name: recommendationProductPicker.label,
-                      weight: 100 * (tiles.length + 1)
+                      weight: 100
                     }
-                  });
+                  };
+
+                  if (currentTileId) {
+                    tile.id = currentTileId;
+                    handleEditTile(tile);
+                  } else {
+                    tile.id = Math.floor(Math.random() * 9999);
+                    handleAddTile(tile);
+                  }
                 }}
                 disabled={!Object.keys(recommendationProductPicker).length}
               >
-                Add Tile
+                {`${currentTileId ? "Edit" : "Add"} Tile`}
               </Button>
             }
           />

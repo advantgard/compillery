@@ -20,6 +20,7 @@ export const TilesList = () => (
               id={id}
               shortcutActions={[
                 { content: "Edit", onAction: () => handleLoadTile(tile) },
+                { content: "Move up", onAction: () => console.log("move up") },
                 { content: "Remove", onAction: () => console.log("remove") }
               ]}
               persistActions

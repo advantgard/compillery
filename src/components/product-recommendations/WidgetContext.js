@@ -5,7 +5,8 @@ export const WidgetContext = createContext({
     resourcePicker: false,
     selectedProductItems: [],
     currentTab: 0,
-    recommendationLabel: "",
+    currentTileLabel: "",
+    currentTileId: null,
     recommendationProductPicker: {}
   },
   props: {
@@ -29,6 +30,8 @@ export const WidgetContext = createContext({
     handleTileSelection: () => {},
     handleAddTile: () => {},
     handleLoadTile: () => {},
+    handleEditTile: () => {},
+    handleRemoveTile: () => {},
     handleSettingChange: () => {},
     handleSingleStateChange: () => {},
     handleRemoveSelectedProduct: () => {}
