@@ -1,8 +1,8 @@
 import React from "react";
 import { WidgetContext } from "./WidgetContext";
-import { TilesEditor } from "./TilesEditor";
+import { TilesEditorModal } from "./TilesEditorModal";
 import { TilesList } from "./TilesList";
-import { Page, Layout, Card, Tabs } from "@shopify/polaris";
+import {Page, Layout, Card, Tabs, Button} from "@shopify/polaris";
 import {ProductsPickerModal} from "./ProductsPickerModal";
 
 const DashboardTabs = [
@@ -42,15 +42,22 @@ export const DashboardWidget = () => (
             <Card.Section>
               <Layout>
                 <Layout.Section oneHalf>
-                  <TilesEditor/>
+                  <TilesList />
                 </Layout.Section>
                 <Layout.Section oneHalf>
-                  <TilesList />
+                  <Button
+                      onClick={() => {
+                        handleSettingChange("resourcePicker", true);
+                      }}
+                  >
+                    Add Products
+                  </Button>
                 </Layout.Section>
               </Layout>
             </Card.Section>
           </Tabs>
         </Card>
+        <TilesEditorModal/>
         <ProductsPickerModal/>
       </Page>
     )}

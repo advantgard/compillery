@@ -5,7 +5,9 @@ import {
   FormLayout,
   Button,
   OptionList,
-  Scrollable
+  Scrollable,
+  Modal,
+  AppProvider
 } from "@shopify/polaris";
 
 const RecommendedProductPicker = () => (
@@ -41,7 +43,7 @@ const RecommendedProductPicker = () => (
   </WidgetContext.Consumer>
 );
 
-export const TilesEditor = () => (
+export const TilesEditorModal = () => (
   <WidgetContext.Consumer>
     {({
       settings: {
@@ -52,52 +54,52 @@ export const TilesEditor = () => (
       props: { tiles },
       methods: { handleSettingChange, handleAddTile, handleEditTile }
     }) => (
-      <FormLayout>
-        <FormLayout.Group>
-          <TextField
-            label="Tile Label"
-            value={currentTileLabel}
-            onChange={newLabel => {
-              handleSettingChange("currentTileLabel", newLabel);
-            }}
-            readOnly={false}
-            helpText="This is the label that appears on the tile"
-            connectedRight={
-              <Button
-                onClick={() => {
-                  const tile = {
-                    label: currentTileLabel,
-                    recommendation: {
-                      id: recommendationProductPicker.value,
-                      name: recommendationProductPicker.label,
-                      weight: 100
-                    }
-                  };
+      <AppProvider>
+        <Modal
+          large
+          open={true}
+          onClose={() => {}}
+          title={`${currentTileId ? "Edit" : "Add"} Tile`}
+          primaryAction={{
+            content: `${currentTileId ? "Edit" : "Add"} Tile`,
+            onAction() {
+              const tile = {
+                label: currentTileLabel,
+                recommendation: {
+                  id: recommendationProductPicker.value,
+                  name: recommendationProductPicker.label,
+                  weight: 100
+                }
+              };
 
-                  if (currentTileId) {
-                    tile.id = currentTileId;
-                    handleEditTile(tile);
-                  } else {
-                    tile.id = Math.floor(Math.random() * 9999);
-                    handleAddTile(tile);
-                  }
-                }}
-                disabled={!Object.keys(recommendationProductPicker).length}
-              >
-                {`${currentTileId ? "Edit" : "Add"} Tile`}
-              </Button>
+              if (currentTileId) {
+                tile.id = currentTileId;
+                handleEditTile(tile);
+              } else {
+                tile.id = Math.floor(Math.random() * 9999);
+                handleAddTile(tile);
+              }
             }
-          />
-        </FormLayout.Group>
-        <RecommendedProductPicker />
-        <Button
-          onClick={() => {
-            handleSettingChange("resourcePicker", true);
           }}
         >
-          Add Products
-        </Button>
-      </FormLayout>
+          <Modal.Section>
+            <FormLayout>
+              <FormLayout.Group>
+                <TextField
+                  label="Tile Label"
+                  value={currentTileLabel}
+                  onChange={newLabel => {
+                    handleSettingChange("currentTileLabel", newLabel);
+                  }}
+                  readOnly={false}
+                  helpText="This is the label that appears on the tile"
+                />
+              </FormLayout.Group>
+              <RecommendedProductPicker />
+            </FormLayout>
+          </Modal.Section>
+        </Modal>
+      </AppProvider>
     )}
   </WidgetContext.Consumer>
 );
