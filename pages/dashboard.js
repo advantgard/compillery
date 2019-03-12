@@ -55,7 +55,7 @@ class Dashboard extends React.Component {
 
   handleRemoveTile = tile => {
     let props = this.state.props;
-    props.tiles = deleteObjectFromArrayById( props.tiles, tile.id );
+    deleteObjectFromArrayById( props.tiles, tile.id );
     this.setState({ props });
   };
 
