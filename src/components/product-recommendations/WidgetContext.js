@@ -31,6 +31,7 @@ export const WidgetContext = createContext({
     handleAddTile: () => {},
     handleLoadTile: () => {},
     handleEditTile: () => {},
+    handleMoveTile: () => {},
     handleRemoveTile: () => {},
     handleSettingChange: () => {},
     handleSingleStateChange: () => {},

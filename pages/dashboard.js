@@ -2,7 +2,7 @@ import { DashboardWidget } from "../src/components/product-recommendations/Dashb
 import { ProductRecommendations } from "../src/components/product-recommendations/ProductRecommendations";
 import { WidgetContext } from "../src/components/product-recommendations/WidgetContext";
 import { Recommendation } from "../src/components/product-recommendations/Recommendation";
-import {deleteObjectFromArrayById} from "../src/components/product-recommendations/Utils";
+import { deleteObjectFromArrayById } from "../src/components/product-recommendations/Utils";
 
 class Dashboard extends React.Component {
   handleResourceSelection = resources => {
@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
     let props = this.state.props;
     let settings = this.state.settings;
     const index = props.tiles.findIndex(
-        currentTile => currentTile.id === tile.id
+      currentTile => currentTile.id === tile.id
     );
     if (index >= 0) {
       props.tiles[index] = tile;
@@ -53,9 +53,22 @@ class Dashboard extends React.Component {
     }
   };
 
+  handleMoveTile = tile => {
+    let props = this.state.props;
+    const tileIndex = props.tiles.findIndex(
+      currentTile => currentTile.id === tile.id
+    );
+    if (tileIndex > 0) {
+      const temp = props.tiles[tileIndex - 1];
+      props.tiles[tileIndex - 1] = props.tiles[tileIndex];
+      props.tiles[tileIndex] = temp;
+      this.setState({ props });
+    }
+  };
+
   handleRemoveTile = tile => {
     let props = this.state.props;
-    deleteObjectFromArrayById( props.tiles, tile.id );
+    deleteObjectFromArrayById(props.tiles, tile.id);
     this.setState({ props });
   };
 
@@ -123,6 +136,7 @@ class Dashboard extends React.Component {
       handleAddTile: this.handleAddTile,
       handleLoadTile: this.handleLoadTile,
       handleEditTile: this.handleEditTile,
+      handleMoveTile: this.handleMoveTile,
       handleRemoveTile: this.handleRemoveTile,
       handleSettingChange: this.handleSettingChange,
       handleSingleStateChange: this.handleSingleStateChange,
