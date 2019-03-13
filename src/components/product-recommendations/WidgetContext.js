@@ -2,7 +2,8 @@ import { createContext } from "react";
 
 export const WidgetContext = createContext({
   settings: {
-    resourcePicker: false,
+    productsPickerModalOpen: false,
+    tileEditorModalOpen: false,
     selectedProductItems: [],
     currentTab: 0,
     currentTileLabel: "",

@@ -24,6 +24,7 @@ class Dashboard extends React.Component {
     props.tiles.push(tile);
     settings.currentTileLabel = "";
     settings.recommendationProductPicker = [];
+    settings.tileEditorModalOpen = false;
     this.setState({ props, settings });
   };
 
@@ -31,6 +32,7 @@ class Dashboard extends React.Component {
     let settings = this.state.settings;
     settings.currentTileLabel = tile.label;
     settings.currentTileId = tile.id;
+    settings.tileEditorModalOpen = true;
     settings.recommendationProductPicker = {
       value: tile.recommendation.id,
       label: tile.recommendation.name
@@ -48,6 +50,7 @@ class Dashboard extends React.Component {
       props.tiles[index] = tile;
       settings.currentTileId = null;
       settings.currentTileLabel = "";
+      settings.tileEditorModalOpen = false;
       settings.recommendationProductPicker = {};
       this.setState({ props, settings });
     }
@@ -107,7 +110,8 @@ class Dashboard extends React.Component {
 
   state = {
     settings: {
-      resourcePicker: false,
+      productsPickerModalOpen: false,
+      tileEditorModalOpen: false,
       selectedProductItems: [],
       currentTab: 0,
       currentTileLabel: "",

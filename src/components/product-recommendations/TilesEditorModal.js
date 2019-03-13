@@ -3,7 +3,6 @@ import { WidgetContext } from "./WidgetContext";
 import {
   TextField,
   FormLayout,
-  Button,
   OptionList,
   Scrollable,
   Modal,
@@ -47,6 +46,7 @@ export const TilesEditorModal = () => (
   <WidgetContext.Consumer>
     {({
       settings: {
+        tileEditorModalOpen,
         currentTileLabel,
         currentTileId,
         recommendationProductPicker
@@ -57,8 +57,10 @@ export const TilesEditorModal = () => (
       <AppProvider>
         <Modal
           large
-          open={true}
-          onClose={() => {}}
+          open={tileEditorModalOpen}
+          onClose={() => {
+            handleSettingChange("tileEditorModalOpen", false);
+          }}
           title={`${currentTileId ? "Edit" : "Add"} Tile`}
           primaryAction={{
             content: `${currentTileId ? "Edit" : "Add"} Tile`,

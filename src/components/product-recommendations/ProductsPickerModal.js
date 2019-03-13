@@ -5,14 +5,14 @@ import { ResourcePicker } from "@shopify/polaris";
 export const ProductsPickerModal = () => (
   <WidgetContext.Consumer>
     {({
-      settings: { resourcePicker },
+      settings: { productsPickerModalOpen },
       methods: { handleSettingChange, handleResourceSelection }
     }) => (
       <ResourcePicker
-        open={resourcePicker}
+        open={productsPickerModalOpen}
         resourceType="Product"
         showVariants={false}
-        onCancel={() => handleSettingChange("resourcePicker", false)}
+        onCancel={() => handleSettingChange("productsPickerModalOpen", false)}
         onSelection={resources => handleResourceSelection(resources.selection)}
       />
     )}

@@ -42,12 +42,19 @@ export const DashboardWidget = () => (
             <Card.Section>
               <Layout>
                 <Layout.Section oneHalf>
+                  <Button
+                      onClick={() => {
+                        handleSettingChange("tileEditorModalOpen", true);
+                      }}
+                  >
+                    Add Tiles
+                  </Button>
                   <TilesList />
                 </Layout.Section>
                 <Layout.Section oneHalf>
                   <Button
                       onClick={() => {
-                        handleSettingChange("resourcePicker", true);
+                        handleSettingChange("productsPickerModalOpen", true);
                       }}
                   >
                     Add Products
