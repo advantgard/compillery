@@ -2,9 +2,10 @@ import { DashboardWidget } from "../src/components/product-recommendations/Dashb
 import { ProductRecommendations } from "../src/components/product-recommendations/ProductRecommendations";
 import { WidgetContext } from "../src/components/product-recommendations/WidgetContext";
 import { Recommendation } from "../src/components/product-recommendations/Recommendation";
-import { deleteObjectFromArrayById } from "../src/components/product-recommendations/Utils";
+import { deleteObjectFromArrayById, moveObjectFromArrayUp } from "../src/components/product-recommendations/Utils";
 
 class Dashboard extends React.Component {
+
   handleResourceSelection = resources => {
     let props = this.state.props;
     props.resourcePicker = false;
@@ -58,15 +59,8 @@ class Dashboard extends React.Component {
 
   handleMoveTile = tile => {
     let props = this.state.props;
-    const tileIndex = props.tiles.findIndex(
-      currentTile => currentTile.id === tile.id
-    );
-    if (tileIndex > 0) {
-      const temp = props.tiles[tileIndex - 1];
-      props.tiles[tileIndex - 1] = props.tiles[tileIndex];
-      props.tiles[tileIndex] = temp;
-      this.setState({ props });
-    }
+    moveObjectFromArrayUp(props.tiles, tile.id);
+    this.setState({props});
   };
 
   handleRemoveTile = tile => {
@@ -91,21 +85,16 @@ class Dashboard extends React.Component {
     }
   };
 
-  handleRemoveSelectedProduct = ids => {
+  handleRemoveProduct = id => {
     let props = this.state.props;
-    let settings = this.state.settings;
-    if (props.products) {
-      ids.forEach(id => {
-        props.products.splice(
-          props.products.findIndex(item => {
-            return item.id === id;
-          }),
-          1
-        );
-        settings.selectedProductItems = [];
-      });
-      this.setState({ props, settings });
-    }
+    deleteObjectFromArrayById(props.products, id);
+    this.setState({ props });
+  };
+
+  handleMoveProduct = id => {
+    let props = this.state.props;
+    moveObjectFromArrayUp(props.products, id);
+    this.setState({ props });
   };
 
   state = {
@@ -144,7 +133,8 @@ class Dashboard extends React.Component {
       handleRemoveTile: this.handleRemoveTile,
       handleSettingChange: this.handleSettingChange,
       handleSingleStateChange: this.handleSingleStateChange,
-      handleRemoveSelectedProduct: this.handleRemoveSelectedProduct
+      handleRemoveProduct: this.handleRemoveProduct,
+      handleMoveProduct: this.handleMoveProduct
     }
   };
 

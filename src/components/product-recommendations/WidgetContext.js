@@ -4,7 +4,6 @@ export const WidgetContext = createContext({
   settings: {
     productsPickerModalOpen: false,
     tileEditorModalOpen: false,
-    selectedProductItems: [],
     currentTab: 0,
     currentTileLabel: "",
     currentTileId: null,
@@ -36,6 +35,7 @@ export const WidgetContext = createContext({
     handleRemoveTile: () => {},
     handleSettingChange: () => {},
     handleSingleStateChange: () => {},
-    handleRemoveSelectedProduct: () => {}
+    handleRemoveProduct: () => {},
+    handleMoveProduct: () => {}
   }
 });

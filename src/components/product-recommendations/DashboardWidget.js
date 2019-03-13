@@ -4,6 +4,7 @@ import { TilesEditorModal } from "./TilesEditorModal";
 import { TilesList } from "./TilesList";
 import {Page, Layout, Card, Tabs, Button} from "@shopify/polaris";
 import {ProductsPickerModal} from "./ProductsPickerModal";
+import {ProductsList} from "./ProductsList";
 
 const DashboardTabs = [
   {
@@ -59,6 +60,7 @@ export const DashboardWidget = () => (
                   >
                     Add Products
                   </Button>
+                  <ProductsList/>
                 </Layout.Section>
               </Layout>
             </Card.Section>

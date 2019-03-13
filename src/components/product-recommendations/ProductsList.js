@@ -4,31 +4,23 @@ import { ResourceList } from "@shopify/polaris";
 
 export const ProductsList = () => (
   <WidgetContext.Consumer>
-    {({
-      props: { products },
-      settings: { selectedProductItems },
-      methods: { handleRemoveSelectedProduct, handleSettingChange }
-    }) => (
+    {({ props: { products }, methods: { handleRemoveProduct, handleMoveProduct } }) => (
       <ResourceList
         resourceName={{ singular: "product", plural: "products" }}
         items={products}
-        selectedItems={selectedProductItems}
-        promotedBulkActions={[
-          {
-            content: "Remove from list",
-            onAction: () => {
-              handleRemoveSelectedProduct(selectedProductItems);
-            }
-          }
-        ]}
-        onSelectionChange={items => {
-          handleSettingChange("selectedProductItems", items);
-        }}
         renderItem={item => {
           const { id, title } = item;
 
           return (
-            <ResourceList.Item id={id} url="#">
+            <ResourceList.Item
+              id={id}
+              url="#"
+              shortcutActions={[
+                { content: "Move up", onAction: () => handleMoveProduct(id) },
+                { content: "Remove", onAction: () => handleRemoveProduct(id) }
+              ]}
+              persistActions
+            >
               <h3>{title}</h3>
             </ResourceList.Item>
           );
