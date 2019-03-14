@@ -1,6 +1,6 @@
 import { Recommendation } from "../Recommendation";
 
-describe("Recommendation.js", () => {
+describe("Recommendation", () => {
   test("Should add a recommendation if current recommendation is empty", () => {
     const sampleProps = {
       selectedTiles: [],
