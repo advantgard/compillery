@@ -1,16 +1,21 @@
+import React from "react";
 import { DashboardWidget } from "../src/components/product-recommendations/DashboardWidget";
 import { ProductRecommendations } from "../src/components/product-recommendations/ProductRecommendations";
 import { WidgetContext } from "../src/components/product-recommendations/WidgetContext";
 import { Recommendation } from "../src/components/product-recommendations/Recommendation";
-import { deleteObjectFromArrayById, moveObjectFromArrayUp } from "../src/components/product-recommendations/Utils";
+import {
+  deleteObjectFromArrayById,
+  moveObjectFromArrayUp,
+  concatObjectArrays
+} from "../src/components/product-recommendations/Utils";
 
 class Dashboard extends React.Component {
-
   handleResourceSelection = resources => {
     let props = this.state.props;
-    props.resourcePicker = false;
-    props.products = resources;
-    this.setState({ props });
+    let settings = this.state.settings;
+    settings.productsPickerModalOpen = false;
+    props.products = concatObjectArrays(props.products, resources);
+    this.setState({ props, settings });
   };
 
   handleTileSelection = tile => {
@@ -60,7 +65,7 @@ class Dashboard extends React.Component {
   handleMoveTile = tile => {
     let props = this.state.props;
     moveObjectFromArrayUp(props.tiles, tile.id);
-    this.setState({props});
+    this.setState({ props });
   };
 
   handleRemoveTile = tile => {
