@@ -2,6 +2,7 @@ import React from "react";
 import { ProductItems } from "./ProductItems";
 import { WidgetContext } from "./WidgetContext";
 import { Tiles } from "./Tiles";
+import { ProductSlide } from "./ProductSlide";
 
 export const ProductRecommendations = () => (
   <WidgetContext.Consumer>
@@ -10,6 +11,7 @@ export const ProductRecommendations = () => (
         <h2 className="product-items__title">{title}</h2>
         <Tiles />
         <ProductItems />
+        <ProductSlide />
       </div>
     )}
   </WidgetContext.Consumer>

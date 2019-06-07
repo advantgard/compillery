@@ -6,6 +6,7 @@
 @import "tiles";
 @import "product-item";
 @import "product-items";
+@import "product-slide";
 
 .compillery-product-recommendations {
 
@@ -39,6 +40,12 @@
   @include product-items__container;
   @include product-items__grid;
   @include product-items__breaks;
+  @include product-slide;
+  @include product-slide__content;
+  @include product-slide__image;
+  @include product-slide__carousel-button;
+  @include product-slide__prev-icon;
+  @include product-slide__next-icon;
 
   // Styles for Modern Mobile Smart Phones (Extra Small Screens+)
   @media screen and (min-width: $screen-xs-min) {
@@ -69,6 +76,7 @@
     @include product-item__action-container--md;
     @include product-items__title--md;
     @include product-items__container--md;
+    @include product-slide__content--md;
   }
 
   // Styles for Low resolution displays (Large Screens)
